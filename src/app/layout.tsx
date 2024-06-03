@@ -1,3 +1,4 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -5,7 +6,16 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
-import { AppBar, Toolbar, Typography, Button, IconButton } from "@mui/material";
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    Button,
+    IconButton,
+    Drawer,
+    Container,
+    Box,
+} from "@mui/material";
 import { Menu as MenuIcon } from "@mui/icons-material";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,7 +33,12 @@ export default function RootLayout({
     return (
         <html lang="ko">
             <body className={inter.className}>
-                <AppBar position="static">
+                <AppBar
+                    position="absolute"
+                    sx={{
+                        zIndex: 10000,
+                    }}
+                >
                     <Toolbar>
                         <IconButton
                             size="large"
@@ -44,7 +59,10 @@ export default function RootLayout({
                         <Button color="inherit">Login</Button>
                     </Toolbar>
                 </AppBar>
-                {children}
+                <Drawer open={false} anchor="left">
+                    <div>test</div>
+                </Drawer>
+                <main>{children}</main>
             </body>
         </html>
     );

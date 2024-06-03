@@ -4,7 +4,7 @@ import { Typography, Container, Button, Box } from "@mui/material";
 
 export default function Home() {
     return (
-        <main className={styles.main}>
+        <section className={styles.container}>
             <p className={styles.message}>
                 Which car brand you want to make price list?
             </p>
@@ -30,6 +30,6 @@ export default function Home() {
                     }
                 />
             </div>
-        </main>
+        </section>
     );
 }
