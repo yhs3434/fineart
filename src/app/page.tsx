@@ -1,14 +1,14 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import { Typography, Container, Button } from "@mui/material";
+import { Typography, Container, Button, Box } from "@mui/material";
 
 export default function Home() {
     return (
         <main className={styles.main}>
-            <Typography>
+            <p className={styles.message}>
                 Which car brand you want to make price list?
-            </Typography>
-            <Container>
+            </p>
+            <div>
                 <Button
                     startIcon={
                         <Image
@@ -29,7 +29,7 @@ export default function Home() {
                         />
                     }
                 />
-            </Container>
+            </div>
         </main>
     );
 }
