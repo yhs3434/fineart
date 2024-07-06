@@ -1,11 +1,12 @@
-import React from "react";
-import styles from "./layout.module.scss";
+import React from 'react'
+import styles from './layout.module.scss'
 import Link from "next/link";
 import { Button, Box } from "@mui/material";
-import { UploadTabNavigator } from "@/components/organisms/UploadTabNavigator";
+import { EditTabNavigator } from "@/components/organisms/EditTabNavigator";
 
-export default function HyundaiUploadLayout({
-    children,
+export default function HyundaiEditLayout(
+    {
+    children
 }: {
     children: React.ReactNode;
 }) {
@@ -21,15 +22,15 @@ export default function HyundaiUploadLayout({
             }}
         >
             <nav className={styles.navigation}>
-                <Link href="/">
+                <Link href="/hyundai/upload/trim/0">
                     <Button>PREV</Button>
                 </Link>
-                <Link href="/hyundai/edit/tabs/0">
+                <Link href="/hyundai/extract">
                     <Button>NEXT</Button>
                 </Link>
             </nav>
-            <p>Paste PDF text following guides.</p>
-            <UploadTabNavigator />
+            <p>Choose what you want to extract.</p>
+            <EditTabNavigator />
             <Box
                 sx={{
                     flex: 1,
@@ -41,5 +42,5 @@ export default function HyundaiUploadLayout({
                 {children}
             </Box>
         </Box>
-    );
+    )    
 }

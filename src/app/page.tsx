@@ -6,7 +6,15 @@ import Link from "next/link";
 
 export default function Home() {
     return (
-        <section className={styles.container}>
+        <Container sx={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '4em',
+            paddingTop: '6em'
+        }}>
             <p className={styles.message}>
                 Which car brand you want to make price list?
             </p>
@@ -29,6 +37,6 @@ export default function Home() {
                     />
                 </Link>
             </div>
-        </section>
+        </Container>
     );
 }

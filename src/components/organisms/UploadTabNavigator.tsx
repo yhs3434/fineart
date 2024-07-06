@@ -4,7 +4,7 @@ import React from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { Tabs, Tab, Box } from "@mui/material";
 
-export const TabNavigator = () => {
+export const UploadTabNavigator = () => {
     const router = useRouter();
     const pathname = usePathname();
 

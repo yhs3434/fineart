@@ -206,11 +206,21 @@ export default function UploadTrimPage({
                                 ) => {
                                     const targetValue = event.target.value;
 
-                                    // setInfos((prev) => {
-                                    //     const currentItem = prev.find(
-                                    //         (item) => item.key === info.key
-                                    //     );
-                                    // });
+                                    setInfos((prev) => {
+                                        const currentIdx = prev.findIndex(
+                                            (item) => item.key === info.key
+                                        );
+
+                                        return [
+                                            ...prev.slice(0, currentIdx),
+                                            {
+                                                key: info.key,
+                                                label: info.label,
+                                                value: targetValue
+                                            },
+                                            ...prev.slice(currentIdx + 1, prev.length)
+                                        ]
+                                    });
                                 }}
                             />
                         </Box>
@@ -266,6 +276,21 @@ export default function UploadTrimPage({
                                         ) => {
                                             const targetValue =
                                                 event.target.value;
+
+                                            setSpecs(prev =>{
+                                                const currentIdx = prev.findIndex(x => 
+                                                    x.key === spec.key
+                                                )
+
+                                                return [
+                                                    ...prev.slice(0, currentIdx),
+                                                    {
+                                                        ...prev[currentIdx],
+                                                        title: targetValue
+                                                    },
+                                                    ...prev.slice(currentIdx + 1, prev.length)
+                                                ]
+                                            })
                                         }}
                                     />
                                     <TextField
@@ -279,6 +304,21 @@ export default function UploadTrimPage({
                                         ) => {
                                             const targetValue =
                                                 event.target.value;
+
+                                            setSpecs(prev =>{
+                                                const currentIdx = prev.findIndex(x => 
+                                                    x.key === spec.key
+                                                )
+
+                                                return [
+                                                    ...prev.slice(0, currentIdx),
+                                                    {
+                                                        ...prev[currentIdx],
+                                                        content: targetValue
+                                                    },
+                                                    ...prev.slice(currentIdx + 1, prev.length)
+                                                ]
+                                            })
                                         }}
                                     />
                                 </Box>
@@ -330,7 +370,7 @@ export default function UploadTrimPage({
                                         }}
                                     >
                                         <TextField
-                                            placeholder="텍스트를 입력 해주세요"
+                                            placeholder="패키지명"
                                             size="small"
                                             value={_package.title}
                                             onChange={(
@@ -338,19 +378,47 @@ export default function UploadTrimPage({
                                             ) => {
                                                 const targetValue =
                                                     event.target.value;
+
+                                                    setPackages(prev =>{
+                                                        const currentIdx = prev.findIndex(x => 
+                                                            x.key === _package.key
+                                                        )
+        
+                                                        return [
+                                                            ...prev.slice(0, currentIdx),
+                                                            {
+                                                                ...prev[currentIdx],
+                                                                title: targetValue
+                                                            },
+                                                            ...prev.slice(currentIdx + 1, prev.length)
+                                                        ]
+                                                    })
                                             }}
                                         />
                                         <TextField
-                                            placeholder="텍스트를 입력 해주세요"
+                                            placeholder="가격"
                                             size="small"
-                                            multiline
                                             value={_package.price}
-                                            rows={4}
                                             onChange={(
                                                 event: React.ChangeEvent<HTMLInputElement>
                                             ) => {
                                                 const targetValue =
                                                     event.target.value;
+
+                                                    setPackages(prev =>{
+                                                        const currentIdx = prev.findIndex(x => 
+                                                            x.key === _package.key
+                                                        )
+        
+                                                        return [
+                                                            ...prev.slice(0, currentIdx),
+                                                            {
+                                                                ...prev[currentIdx],
+                                                                price: targetValue
+                                                            },
+                                                            ...prev.slice(currentIdx + 1, prev.length)
+                                                        ]
+                                                    })
                                             }}
                                         />
                                     </Box>
@@ -394,7 +462,7 @@ export default function UploadTrimPage({
                                         }}
                                     >
                                         <TextField
-                                            placeholder="텍스트를 입력 해주세요"
+                                            placeholder="패키지명"
                                             size="small"
                                             value={accesory.title}
                                             onChange={(
@@ -402,19 +470,47 @@ export default function UploadTrimPage({
                                             ) => {
                                                 const targetValue =
                                                     event.target.value;
+
+                                                    setAccesories(prev =>{
+                                                        const currentIdx = prev.findIndex(x => 
+                                                            x.key === accesory.key
+                                                        )
+        
+                                                        return [
+                                                            ...prev.slice(0, currentIdx),
+                                                            {
+                                                                ...prev[currentIdx],
+                                                                title: targetValue
+                                                            },
+                                                            ...prev.slice(currentIdx + 1, prev.length)
+                                                        ]
+                                                    })
                                             }}
                                         />
                                         <TextField
-                                            placeholder="텍스트를 입력 해주세요"
+                                            placeholder="가격"
                                             size="small"
-                                            multiline
                                             value={accesory.price}
-                                            rows={4}
                                             onChange={(
                                                 event: React.ChangeEvent<HTMLInputElement>
                                             ) => {
                                                 const targetValue =
                                                     event.target.value;
+
+                                                    setAccesories(prev =>{
+                                                        const currentIdx = prev.findIndex(x => 
+                                                            x.key === accesory.key
+                                                        )
+        
+                                                        return [
+                                                            ...prev.slice(0, currentIdx),
+                                                            {
+                                                                ...prev[currentIdx],
+                                                                price: targetValue
+                                                            },
+                                                            ...prev.slice(currentIdx + 1, prev.length)
+                                                        ]
+                                                    })
                                             }}
                                         />
                                     </Box>
