@@ -9,6 +9,7 @@ import "@fontsource/roboto/700.css";
 import { CssBaseline, Box } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
 import { AppLayout } from "@/components/template/AppLayout";
+import {Provider} from 'jotai'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     description: "Kim Jaewon",
 };
 
-export default function RootLayout({
+function RootLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;
@@ -44,4 +45,18 @@ export default function RootLayout({
             </body>
         </html>
     );
+}
+
+export default function App({
+    children
+}: {
+    children: React.ReactNode
+}) {
+    return (
+        <Provider>
+            <RootLayout>
+                {children}
+            </RootLayout>
+        </Provider>
+    )
 }

@@ -18,9 +18,9 @@ import {
     Divider,
 } from "@mui/material";
 import { Css, Menu as MenuIcon } from "@mui/icons-material";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
 import { useRouter } from "next/navigation";
+import {infosAtomFamily, specsAtomFamily, packagesAtomFamily, accesoriesAtomFamily} from '@/atoms/hyundai/index'
+import {useResetAtom, useAtomCallback} from 'jotai/utils'
 
 type AppLayoutProps = React.PropsWithChildren<{
     //
@@ -41,6 +41,10 @@ export function AppLayout({ children }: AppLayoutProps) {
         setIsDrawerOpen(false);
     }, []);
 
+    const handleAppTitlePress = React.useCallback(() => {
+        //
+    }, [])
+
     return (
         <Container sx={{ flex: 1, flexDirection: "column" }}>
             <AppBar
@@ -59,13 +63,11 @@ export function AppLayout({ children }: AppLayoutProps) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1 }}
-                    >
-                        Typography
-                    </Typography>
+                    <Box sx={{flexGrow:1}}>
+                        <Button  variant="text" onClick={handleAppTitlePress}>
+                            <Typography sx={{color: 'white'}}>Fineart Generator</Typography>
+                        </Button>
+                    </Box>
                     <Button color="inherit">Login</Button>
                 </Toolbar>
             </AppBar>

@@ -3,86 +3,18 @@
 import React from "react";
 import { Container, Box, TextField, Typography, Button } from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-
-interface Info {
-    key: string;
-    label: string;
-    value: string;
-}
-
-interface Spec {
-    key: string;
-    title: string;
-    content: string;
-}
-
-interface Package {
-    key: string;
-    title: string;
-    price: string;
-}
-
-interface Accesory {
-    key: string;
-    title: string;
-    price: string;
-}
+import {useAtom} from 'jotai'
+import {infosAtomFamily, specsAtomFamily, packagesAtomFamily, accesoriesAtomFamily} from '@/atoms/hyundai/index'
 
 export default function UploadTrimPage({
     params,
 }: {
     params: { index: string };
 }) {
-    const [infos, setInfos] = React.useState<Info[]>([
-        {
-            key: "g1",
-            label: "구분1",
-            value: "",
-        },
-        {
-            key: "g2",
-            label: "구분2",
-            value: "",
-        },
-        {
-            key: "p1",
-            label: "판매가격1",
-            value: "",
-        },
-        {
-            key: "p2",
-            label: "판매가격2",
-            value: "",
-        },
-    ]);
-
-    const [specs, setSpecs] = React.useState<Spec[]>([
-        {
-            key: "s0",
-            title: "",
-            content: "",
-        },
-        {
-            key: "s1",
-            title: "",
-            content: "",
-        },
-        {
-            key: "s2",
-            title: "",
-            content: "",
-        },
-        {
-            key: "s3",
-            title: "",
-            content: "",
-        },
-        {
-            key: "s4",
-            title: "",
-            content: "",
-        },
-    ]);
+    const [infos, setInfos] = useAtom(infosAtomFamily(params.index))
+    const [specs, setSpecs] = useAtom(specsAtomFamily(params.index));
+    const [packages, setPackages] = useAtom(packagesAtomFamily(params.index));
+    const [accesories, setAccesories] = useAtom(accesoriesAtomFamily(params.index));
 
     const handleSpecAddButtonPress = React.useCallback(() => {
         setSpecs((prev) => {
@@ -102,24 +34,6 @@ export default function UploadTrimPage({
         });
     }, []);
 
-    const [packages, setPackages] = React.useState<Package[]>([
-        {
-            key: "p0",
-            title: "",
-            price: "",
-        },
-        {
-            key: "p1",
-            title: "",
-            price: "",
-        },
-        {
-            key: "p2",
-            title: "",
-            price: "",
-        },
-    ]);
-
     const handlePackageAddButtonPress = React.useCallback(() => {
         setPackages((prev) => {
             const lastItem = prev?.[prev.length - 1];
@@ -138,23 +52,7 @@ export default function UploadTrimPage({
         });
     }, []);
 
-    const [accesories, setAccesories] = React.useState<Accesory[]>([
-        {
-            key: "a0",
-            title: "",
-            price: "",
-        },
-        {
-            key: "a1",
-            title: "",
-            price: "",
-        },
-        {
-            key: "a2",
-            title: "",
-            price: "",
-        },
-    ]);
+
 
     const handleAccesoryAddButtonPress = React.useCallback(() => {
         setAccesories((prev) => {
