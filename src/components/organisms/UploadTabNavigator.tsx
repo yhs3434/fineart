@@ -3,8 +3,14 @@
 import React from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { Tabs, Tab, Box, IconButton, Typography } from '@mui/material';
-import { uploadTabsAtom } from '@/atoms/hyundai';
-import { useAtom } from 'jotai';
+import {
+  uploadTabsAtom,
+  infosAtomFamily,
+  specsAtomFamily,
+  packagesAtomFamily,
+  accesoriesAtomFamily,
+} from '@/atoms/hyundai';
+import { useAtom, useSetAtom } from 'jotai';
 import styles from './UploadTabNavigator.module.scss';
 import {
   AddCircleOutline,
@@ -45,6 +51,17 @@ export const UploadTabNavigator = () => {
   const handleRemove = React.useCallback((key: string) => {
     setTabs((prev) => {
       const removeIdx = prev.findIndex((tab) => tab.key === key);
+      const indiSeq = parseInt(key.slice(4), 10);
+
+      const infoKey = `infosAtom-${indiSeq}`;
+      const specKey = `specsAtom-${indiSeq}`;
+      const packageKey = `packagesAtom-${indiSeq}`;
+      const accesoryKey = `accesoriesAtom-${indiSeq}`;
+
+      localStorage.removeItem(infoKey);
+      localStorage.removeItem(specKey);
+      localStorage.removeItem(packageKey);
+      localStorage.removeItem(accesoryKey);
 
       return [
         ...prev.slice(0, removeIdx),
