@@ -47,7 +47,21 @@ export default function UploadTrimPage({
         },
       ];
     });
-  }, []);
+  }, [setSpecs]);
+
+  const handleSpecRemoveButtonPressed = React.useCallback(
+    (item: (typeof specs)[0]) => {
+      setSpecs((prev) => {
+        const removeIdx = prev.findIndex((x) => x.key === item.key);
+
+        return [
+          ...prev.slice(0, removeIdx),
+          ...prev.slice(removeIdx + 1, prev.length),
+        ];
+      });
+    },
+    [setSpecs],
+  );
 
   const handlePackageAddButtonPress = React.useCallback(() => {
     setPackages((prev) => {
@@ -65,7 +79,21 @@ export default function UploadTrimPage({
         },
       ];
     });
-  }, []);
+  }, [setPackages]);
+
+  const handlePackageRemoveButtonPress = React.useCallback(
+    (item: (typeof packages)[0]) => {
+      setPackages((prev) => {
+        const removeIdx = prev.findIndex((x) => x.key === item.key);
+
+        return [
+          ...prev.slice(0, removeIdx),
+          ...prev.slice(removeIdx + 1, prev.length),
+        ];
+      });
+    },
+    [setPackages],
+  );
 
   const handleAccesoryAddButtonPress = React.useCallback(() => {
     setAccesories((prev) => {
@@ -83,7 +111,21 @@ export default function UploadTrimPage({
         },
       ];
     });
-  }, []);
+  }, [setAccesories]);
+
+  const handleAccesoryRemoveButtonPress = React.useCallback(
+    (item: (typeof accesories)[0]) => {
+      setAccesories((prev) => {
+        const removeIdx = prev.findIndex((x) => x.key === item.key);
+
+        return [
+          ...prev.slice(0, removeIdx),
+          ...prev.slice(removeIdx + 1, prev.length),
+        ];
+      });
+    },
+    [setAccesories],
+  );
 
   return (
     <Container
@@ -178,9 +220,7 @@ export default function UploadTrimPage({
                 >
                   <Box>
                     <IconButton
-                      onClick={() => {
-                        //
-                      }}
+                      onClick={() => handleSpecRemoveButtonPressed(spec)}
                     >
                       <RemoveCircle />
                     </IconButton>
@@ -281,6 +321,13 @@ export default function UploadTrimPage({
                       gap: 1,
                     }}
                   >
+                    <Box>
+                      <IconButton
+                        onClick={() => handlePackageRemoveButtonPress(_package)}
+                      >
+                        <RemoveCircle />
+                      </IconButton>
+                    </Box>
                     <TextField
                       placeholder="패키지명"
                       size="small"
@@ -371,6 +418,15 @@ export default function UploadTrimPage({
                       gap: 1,
                     }}
                   >
+                    <Box>
+                      <IconButton
+                        onClick={() =>
+                          handleAccesoryRemoveButtonPress(accesory)
+                        }
+                      >
+                        <RemoveCircle />
+                      </IconButton>
+                    </Box>
                     <TextField
                       placeholder="패키지명"
                       size="small"
