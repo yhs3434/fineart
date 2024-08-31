@@ -19,6 +19,7 @@ import {
   InsertEmoticon,
   PlusOne,
 } from '@mui/icons-material';
+import { v4 } from 'uuid';
 
 export const UploadTabNavigator = () => {
   const router = useRouter();
@@ -30,13 +31,11 @@ export const UploadTabNavigator = () => {
     (event: React.SyntheticEvent<Element, Event>, newValue: any) => {
       if (newValue === 'add') {
         setTabs((prev) => {
-          const lastKey = prev[prev.length - 1].key;
-          const lastNumber = parseInt(lastKey.replace('trim', ''), 10);
+          const newKey = v4();
 
           const newItem = {
-            key: `trim${String(lastNumber + 1).padStart(2, '0')}`,
-            title: `트림 ${lastNumber + 2}`,
-            value: `/hyundai/upload/trim/${lastNumber + 1}`,
+            key: `trim_${newKey}`,
+            title: `트림 ${newKey.slice(0, 4)}`,
           };
 
           return [...prev, newItem];
@@ -51,12 +50,11 @@ export const UploadTabNavigator = () => {
   const handleRemove = React.useCallback((key: string) => {
     setTabs((prev) => {
       const removeIdx = prev.findIndex((tab) => tab.key === key);
-      const indiSeq = parseInt(key.slice(4), 10);
 
-      const infoKey = `infosAtom-${indiSeq}`;
-      const specKey = `specsAtom-${indiSeq}`;
-      const packageKey = `packagesAtom-${indiSeq}`;
-      const accesoryKey = `accesoriesAtom-${indiSeq}`;
+      const infoKey = `infosAtom-${key}`;
+      const specKey = `specsAtom-${key}`;
+      const packageKey = `packagesAtom-${key}`;
+      const accesoryKey = `accesoriesAtom-${key}`;
 
       localStorage.removeItem(infoKey);
       localStorage.removeItem(specKey);
@@ -98,7 +96,7 @@ export const UploadTabNavigator = () => {
                 </IconButton>
               </span>
             }
-            value={tab.value}
+            value={`/hyundai/upload/trim/${tab?.key?.slice(5)}`}
           />
         ))}
         <Tab

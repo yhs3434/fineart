@@ -16,16 +16,21 @@
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
     "@mui/material-nextjs": "^5.15.11",
+    "axios": "^1.7.3",
     "jotai": "^2.8.4",
     "next": "14.2.3",
+    "qs": "^6.13.0",
     "react": "^18",
     "react-dom": "^18",
-    "react-router-dom": "^6.23.1"
+    "react-router-dom": "^6.23.1",
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/qs": "^6.9.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/uuid": "^10.0.0",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
     "sass": "^1.77.6",

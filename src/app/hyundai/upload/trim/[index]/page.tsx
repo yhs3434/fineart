@@ -18,6 +18,7 @@ import {
   accesoriesAtomFamily,
 } from '@/atoms/hyundai/index';
 import { RemoveCircle } from '@mui/icons-material';
+import { v4 } from 'uuid';
 
 export default function UploadTrimPage({
   params,
@@ -33,15 +34,12 @@ export default function UploadTrimPage({
 
   const handleSpecAddButtonPress = React.useCallback(() => {
     setSpecs((prev) => {
-      const lastItem = prev?.[prev.length - 1];
-      const lastItemKey = lastItem.key;
-      const nextKeyNumber = parseInt(lastItemKey.slice(1)) + 1;
-      const nextKey = `s${nextKeyNumber}`;
+      const newKey = `spec_${v4()}`;
 
       return [
         ...prev,
         {
-          key: nextKey,
+          key: newKey,
           title: '',
           content: '',
         },
@@ -65,15 +63,12 @@ export default function UploadTrimPage({
 
   const handlePackageAddButtonPress = React.useCallback(() => {
     setPackages((prev) => {
-      const lastItem = prev?.[prev.length - 1];
-      const lastItemKey = lastItem.key;
-      const nextKeyNumber = parseInt(lastItemKey.slice(1)) + 1;
-      const nextKey = `s${nextKeyNumber}`;
+      const newKey = `package_${v4()}`;
 
       return [
         ...prev,
         {
-          key: nextKey,
+          key: newKey,
           title: '',
           price: '',
         },
@@ -97,15 +92,12 @@ export default function UploadTrimPage({
 
   const handleAccesoryAddButtonPress = React.useCallback(() => {
     setAccesories((prev) => {
-      const lastItem = prev?.[prev.length - 1];
-      const lastItemKey = lastItem.key;
-      const nextKeyNumber = parseInt(lastItemKey.slice(1)) + 1;
-      const nextKey = `s${nextKeyNumber}`;
+      const newKey = `accesory_${v4()}`;
 
       return [
         ...prev,
         {
-          key: nextKey,
+          key: newKey,
           title: '',
           price: '',
         },

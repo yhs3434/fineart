@@ -1,45 +1,45 @@
-import React from "react";
-import styles from "./layout.module.scss";
-import Link from "next/link";
-import { Button, Box } from "@mui/material";
-import { UploadTabNavigator } from "@/components/organisms/UploadTabNavigator";
+import React from 'react';
+import styles from './layout.module.scss';
+import Link from 'next/link';
+import { Button, Box } from '@mui/material';
+import { UploadTabNavigator } from '@/components/organisms/UploadTabNavigator';
 
 export default function HyundaiUploadLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }) {
-    return (
-        <Box
-            sx={{
-                flex: 1,
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: "2em",
-                gap: "2em",
-            }}
-        >
-            <nav className={styles.navigation}>
-                <Link href="/">
-                    <Button>PREV</Button>
-                </Link>
-                <Link href="/hyundai/edit/tabs/0">
-                    <Button>NEXT</Button>
-                </Link>
-            </nav>
-            <p>Paste PDF text following guides.</p>
-            <UploadTabNavigator />
-            <Box
-                sx={{
-                    flex: 1,
-                    width: "100%",
-                    display: "flex",
-                    flexDirection: "column",
-                }}
-            >
-                {children}
-            </Box>
-        </Box>
-    );
+  return (
+    <Box
+      sx={{
+        flex: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '2em',
+        gap: '2em',
+      }}
+    >
+      <nav className={styles.navigation}>
+        <Link href="/">
+          <Button>PREV</Button>
+        </Link>
+        <Link href="/hyundai/edit">
+          <Button>NEXT</Button>
+        </Link>
+      </nav>
+      <p>Paste PDF text following guides.</p>
+      <UploadTabNavigator />
+      <Box
+        sx={{
+          flex: 1,
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+        }}
+      >
+        {children}
+      </Box>
+    </Box>
+  );
 }
