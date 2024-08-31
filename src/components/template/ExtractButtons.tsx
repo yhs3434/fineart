@@ -6,6 +6,8 @@ import axios from 'axios';
 import qs from 'qs';
 import { type RequestParam } from '@/app/apis/hyundai/export/route';
 import type { Info, Spec, Package, Accesory } from '@/atoms/hyundai';
+import * as XLSX from 'xlsx';
+import { v4 as uuidV4 } from 'uuid';
 
 export function ExtractButtons() {
   const getRequestParams: () => RequestParam[] = React.useCallback(() => {
@@ -40,7 +42,7 @@ export function ExtractButtons() {
           basic_items:
             currentSpecs.map((x) => ({
               title: x.title,
-              content: x.content,
+              content: x.content ?? '',
             })) ?? [],
           optional_items: [
             ...(currentPackages.map((x) => ({
@@ -70,7 +72,10 @@ export function ExtractButtons() {
       },
     );
 
-    console.log('d response', response);
+    const worksheet = XLSX.utils.aoa_to_sheet(response.data);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
+    XLSX.writeFile(workbook, `${uuidV4()}.xlsx`);
   }, [getRequestParams]);
 
   const handleHTMLButtonPress = React.useCallback(async () => {

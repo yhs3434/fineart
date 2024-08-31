@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { splitSpec } from '@/utils/string';
+import XLSX from 'xlsx';
 
 export interface RequestQueries {
   type: 'excel' | 'html';
@@ -21,26 +23,54 @@ export interface RequestParam {
   }[];
 }
 
-export interface ResponseData {
-  type: RequestQueries['type'];
-}
+export type ResponseData = string[][];
 
 const exportToExcel = (params: RequestParam[]): ResponseData => {
-  console.log('d params', params);
+  const data: ResponseData = [['트림', '대분류', '사양']];
 
-  const data: ResponseData = {
-    type: 'excel',
-  };
+  params?.forEach((param) => {
+    const category = param?.category ?? {};
+    const basic_items = param?.basic_items ?? [];
+    const optional_items = param?.optional_items ?? [];
+
+    basic_items.forEach((item) => {
+      const title = item?.title ?? '';
+      const contents = splitSpec(item?.content ?? '') ?? [];
+
+      contents.forEach((content) => {
+        data.push([category.name0, title, content]);
+      });
+    });
+
+    optional_items.forEach((item) => {
+      const title = item?.title ?? '';
+      const price = item?.price ?? '';
+    });
+  });
 
   return data;
 };
 
-const exportToHTML = (params: RequestParam[]): ResponseData => {
-  const data: ResponseData = {
-    type: 'html',
-  };
+const exportToHTML = (params: RequestParam[]) => {
+  params?.forEach((param) => {
+    const category = param?.category ?? {};
+    const basic_items = param?.basic_items ?? [];
+    const optional_items = param?.optional_items ?? [];
 
-  return data;
+    basic_items.forEach((item) => {
+      const title = item?.title ?? '';
+      const contents = splitSpec(item?.content ?? '') ?? [];
+
+      contents.forEach((content) => {
+        //
+      });
+    });
+
+    optional_items.forEach((item) => {
+      const title = item?.title ?? '';
+      const price = item?.price ?? '';
+    });
+  });
 };
 
 export async function POST(request: NextRequest) {
@@ -49,15 +79,12 @@ export async function POST(request: NextRequest) {
 
   const body: RequestParam[] = await request.json();
 
-  let data: ResponseData;
   switch (type) {
     case 'excel':
-      data = exportToExcel(body);
-      break;
+      const data = exportToExcel(body);
+      return NextResponse.json<ResponseData>(data);
     case 'html':
-      data = exportToHTML(body);
+      // data = exportToHTML(body);
       break;
   }
-
-  return NextResponse.json<ResponseData>(data);
 }
