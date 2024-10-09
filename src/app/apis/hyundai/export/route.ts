@@ -68,7 +68,7 @@ const exportToHTML = (params: RequestParam[]) => {
     "<!-- {{trim_title}} Trim(data-trim='트림명') -->" +
     "<tr data-trim='{{trim_title}}'>" +
     "<th scope='col' align='center'>" +
-    "<div class='table-price-title>" +
+    "<div class='table-price-title'>" +
     "<p class='title'>" +
     "<span class='price'>" +
     '{{price}}' +
@@ -203,7 +203,6 @@ const exportToHTML = (params: RequestParam[]) => {
     trims: [],
   };
   params?.forEach((param) => {
-    console.log('d param', param);
     let data: any = {};
 
     const category = param?.category ?? {};
