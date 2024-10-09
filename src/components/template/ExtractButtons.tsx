@@ -88,8 +88,19 @@ export function ExtractButtons() {
       {
         method: 'post',
         data: JSON.stringify(requestParams),
+        responseType: 'blob',
       },
     );
+
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'sample.html';
+    document.body.appendChild(a);
+    a.click();
+
+    window.URL.revokeObjectURL(url);
   }, [getRequestParams]);
 
   return (
